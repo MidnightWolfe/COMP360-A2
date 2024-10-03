@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cirwxnbsl2kuv"]
+
+[ext_resource type="Script" path="res://greyscale_image.gd" id="1_4t6h6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i4bgi"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ys6y1"]
+sky_material = SubResource("ProceduralSkyMaterial_i4bgi")
+
+[sub_resource type="Environment" id="Environment_h4380"]
+background_mode = 2
+sky = SubResource("Sky_ys6y1")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="origin" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h4380")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9383, 0.345822, 0, -0.345822, 0.9383, 8.37493, 3.85996, 19.6244)
+
+[node name="greyscale image" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0153378, 0, 0)
+script = ExtResource("1_4t6h6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 16.3824, -0.00680649)
