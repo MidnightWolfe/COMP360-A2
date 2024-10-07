@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://7wwlqp7bbokj"]
+
+[ext_resource type="Script" path="res://spline.gd" id="1_2jki2"]
+
+[node name="spline" type="Node2D"]
+
+[node name="space_curve" type="Node2D" parent="."]
+script = ExtResource("1_2jki2")

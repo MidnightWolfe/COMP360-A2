@@ -1,0 +1,8 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1728334504
+greyscale image.tscn::PackedScene::5370824070592119277::1727988403::0::1::::<><>::res://greyscale_image.gd
+greyscale_image.gd::GDScript::-1::1727988403::0::1::::<>Node3D<>::
+icon.svg::CompressedTexture2D::7229714541166325471::1727988403::1728327787::1::::<><>::
+matrix.gd::GDScript::-1::1728331971::0::1::::<>Node<>::
+spline.gd::GDScript::-1::1728332014::0::1::::<>Node2D<>::
+spline.tscn::PackedScene::2292815589581161709::1728334473::0::1::::<><>::res://spline.gd
