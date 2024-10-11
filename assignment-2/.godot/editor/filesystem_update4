@@ -1,4 +1,2 @@
-res://spline.tscn
-res://matrix.gd
-res://spline.gd
+res://spline_path.gd
 res://greyscale image.tscn

@@ -1,8 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://7wwlqp7bbokj"]
+[gd_scene load_steps=2 format=3 uid="uid://damq4k4mx8x1q"]
 
-[ext_resource type="Script" path="res://spline.gd" id="1_2jki2"]
+[sub_resource type="GDScript" id="GDScript_8bp6o"]
+script/source = "extends Node2D
+#This will require a matrix script to work, current one is from the lab /class and will need adjusted
+
+##Generating points for the spline curve, may need to add more, or remove some
+##Might need to scale all of these to be in the 100 by 100 range
+var points = [
+	Vector2(10.0, 50.0),
+	Vector2(50.0, 70.0),
+	Vector2(75.0, 65.0),
+	Vector2(90.0, 100.0),
+	Vector2(100.0, 95.0),
+	Vector2(20.0,20.0)	
+]
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	spline_color() #To display the spline on a 2D plane
+	pass # Replace with function body.
+
+##This will need to be recursive
+func spline():
+	pass
+	
+##This is to show the spline as an image, just to display it
+func spline_color():
+	pass
+	
+##Math to recursively make the spline
+func bezier_curve():
+	pass
+"
 
 [node name="spline" type="Node2D"]
 
 [node name="space_curve" type="Node2D" parent="."]
-script = ExtResource("1_2jki2")
+script = SubResource("GDScript_8bp6o")
