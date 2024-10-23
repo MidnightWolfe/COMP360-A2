@@ -9,24 +9,35 @@ extends Path3D
 
 ##The points for the hilbert curve
 var pointsCurve = _hilbertPoints(3, 200) #Size may need changed
+var pts = [] #Global variable for the points for the cardinal spline
+
 
 ##The selected points from the hilbert curve, used to generate the spline
-var points = [ 
-	pointsCurve[0], #Start and end points repeated to make a cycle
-	pointsCurve[0],
-	pointsCurve[3],
-	pointsCurve[6],
-	pointsCurve[9],
-	pointsCurve[12],
-	pointsCurve[14],
-	pointsCurve[32],
-	pointsCurve[16],
-	pointsCurve[0],
-	pointsCurve[0]
+#var points = [ 
+#	pointsCurve[0], #Start and end points repeated to make a cycle
+#	pointsCurve[0],
+#	pointsCurve[3],
+#	pointsCurve[6],
+#	pointsCurve[9],
+#	pointsCurve[12],
+#	pointsCurve[14],
+#	pointsCurve[32],
+#	pointsCurve[16],
+#	pointsCurve[0],
+#	pointsCurve[0]
+#]
 
-]
+var start =  2 #start of the splice
+var end = 30 #End of the splice
+
+var points = pointsCurve.slice(start,end) #Random section of points from the Hilbert curve
+
+
 
 func _ready() -> void:
+	points.append(pointsCurve[start]) #Calling start twice to make the spline loop
+	points.append(pointsCurve[start])
+	points.insert(0, pointsCurve[start])
 	catmull_rom()
 	#print(pointsCurve) #Testing
 	#print(points) #Testing
@@ -34,7 +45,7 @@ func _ready() -> void:
 
 ##The math / matrix for the cardinal spline
 func cardinal_spline(res, s, p): #p is for the altered points, res is the resolution, s is the scale
-	var pts = []
+#var pts = []
 	for k in range(res+1):
 		var t = float(k) / res
 		var PolyT = Matrix.new(1, 4)
@@ -70,7 +81,7 @@ func catmull_rom():
 	
 	#The k values of generating a spline
 	for k in range(points.size()-3):
-		var pts: Array;
+	#var pts: Array;
 		pts = cardinal_spline(
 			res, s,
 			[
