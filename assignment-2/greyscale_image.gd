@@ -150,4 +150,7 @@ func _GetPercent(numerator : float, denominator : float) -> float:
 ### Takes the size of the image and divides it by the number of quadrants being generated to get the correct pixel.
 ### Multiplies that value by the quardrant, from the _CreateQuad function, to return the proper x,y height relative to the quadrant.
 func _GetHeight(x : float,y : float) -> float:
+	@warning_ignore("integer_division")
+	@warning_ignore("narrowing_conversion")
 	return image.get_pixel(x * (IMAGE_SIZE_X/quadsHorizontal), y * (IMAGE_SIZE_Y/quadsVertical)).r
+	
