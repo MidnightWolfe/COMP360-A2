@@ -11,6 +11,12 @@ extends Path3D
 var pointsCurve = _hilbertPoints(3, 200) #Size may need changed
 var pts = [] #Global variable for the points for the cardinal spline
 
+##Positioning variables for path
+var pathXOffset = 12
+var pathYOffset = 1.8
+var pathZOffset = 10
+
+
 
 ##The selected points from the hilbert curve, used to generate the spline
 #var points = [ 
@@ -41,6 +47,8 @@ func _ready() -> void:
 	catmull_rom()
 	#print(pointsCurve) #Testing
 	#print(points) #Testing
+	#Create Path3D stuff
+	createPath3DInWorld()
 	pass
 
 ##The math / matrix for the cardinal spline
@@ -107,7 +115,9 @@ func catmull_rom():
 	sprite.position = Vector2(width + 450, height + 100) #This will need changed
 	sprite.scale = Vector2(3.0,3.0) #Play around with the scaling
 	
-	add_child(sprite)
+	createImageInWorld(sprite)
+	#add_child(sprite)
+	
 	pass
 
 ##Function to get the points from a Hilbert space-filling curve
@@ -217,3 +227,68 @@ func bresenham_line(image, c, fx0, fy0, fx1, fy1):
 		if e2 <= dx:
 			err += dx
 			y1 += sy
+			
+			
+func createImageInWorld(image: Sprite2D):
+	#Find pathimage and add image to it is the overarching goal here
+	#We could totally generate this on the fly instead of having a pre done node
+	var path_image_node = get_node("../PathImage")
+	#~~~~~~~~ convert Sprite2D to 3D ~~~~~~~~ 
+	
+	#Grab the texture from the image passed to the function
+	var textureFromSprite2D = image.texture
+	if (textureFromSprite2D == null):
+		print("Error, unable to grab texture from 2DSprite in CreateImageInWorld.")
+		return
+		
+	#We make a new 3D sprite which we will paste the 2D sprit's texture onto
+	var new3DSprite = Sprite3D.new()
+	#Set up the 3D sprite
+	new3DSprite.texture = textureFromSprite2D
+
+	
+	#Rotate thanks to the info from today's class to make that easy
+	var th = PI/2
+	new3DSprite.transform.basis = Basis.IDENTITY.rotated(Vector3(-1, 0, 0), th)
+
+	#Add the 3D sprite to the Scene
+	path_image_node.add_child(new3DSprite)
+	#Set the 3DSprite's default position
+	new3DSprite.transform.origin = Vector3(pathXOffset,pathYOffset,pathZOffset)
+	#Scale if wanted
+	
+	new3DSprite.scale = Vector3(5.0,5.0,1)
+	
+	
+	pass
+	
+	
+#Create a path3D from the points used to generate the image. I found this easier than tracing it as my image only exists in runtime
+func createPath3DInWorld():
+	#The points are way too spread apart for the size of our landscape this will shrink it down
+	var shrinkFactor = 20
+	#The points of the curve are already global under pts[] so lets use that
+	#First find the path3D in scene which if this script is set up as part of a path3D we are by default
+	for point in pts:
+		#Convert vector2 to vector 3
+		var pointX = point.x/shrinkFactor + pathXOffset/1.71
+		var pointY = point.y/shrinkFactor + pathZOffset/2
+		var pointIn3DSpace = Vector3(pointX, pathYOffset, pointY)
+		self.curve.add_point(pointIn3DSpace)
+	#Show the path with objects for testing purposes
+	#debugShowPath(self.curve)
+	
+	
+	pass
+	
+func debugShowPath(curve: Curve3D):
+	for i in range(curve.get_point_count()):
+		var positionOfPoint = curve.get_point_position(i)
+		#create a small cube at that point
+		var testObj = MeshInstance3D.new()
+		var testObjMesh = BoxMesh.new()
+		testObjMesh.size = Vector3(0.05,0.05,0.05)
+		testObj.mesh = testObjMesh
+		testObj.transform.origin = positionOfPoint
+		add_child(testObj)
+	pass

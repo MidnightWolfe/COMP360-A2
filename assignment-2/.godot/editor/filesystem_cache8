@@ -1,8 +1,9 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1729644946
-greyscale image.tscn::PackedScene::5370824070592119277::1729282672::0::1::::<><>::res://greyscale_image.gd<>res://spline_path.gd
-greyscale_image.gd::GDScript::-1::1727988403::0::1::::<>Node3D<>::
-icon.svg::CompressedTexture2D::7229714541166325471::1727988403::1728327787::1::::<><>::
-matrix.gd::GDScript::-1::1728334601::0::1::::Matrix<>Node<>::
-spline.tscn::PackedScene::7185058414645640728::1728675423::0::1::::<><>::
-spline_path.gd::GDScript::-1::1729282603::0::1::::<>Path3D<>::
+::res://::1729668747
+cameraControls.gd::GDScript::-1::1729639232::0::1::::<>Camera3D<>::
+greyscale image.tscn::PackedScene::5370824070592119277::1729668703::0::1::::<><>::res://greyscale_image.gd<>res://cameraControls.gd<>res://spline_path.gd
+greyscale_image.gd::GDScript::-1::1729653268::0::1::::<>Node3D<>::
+icon.svg::CompressedTexture2D::7229714541166325471::1729653268::1729653364::1::::<><>::
+matrix.gd::GDScript::-1::1729653268::0::1::::Matrix<>Node<>::
+spline.tscn::PackedScene::7185058414645640728::1729653268::0::1::::<><>::
+spline_path.gd::GDScript::-1::1729668703::0::1::::<>Path3D<>::
