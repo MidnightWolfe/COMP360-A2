@@ -1,9 +1,9 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1729788761
-cameraControls.gd::GDScript::-1::1729639232::0::1::::<>Camera3D<>::
-greyscale image.tscn::PackedScene::5370824070592119277::1729788661::0::1::::<><>::res://greyscale_image.gd<>res://cameraControls.gd<>res://spline_path.gd
-greyscale_image.gd::GDScript::-1::1729788729::0::1::::<>Node3D<>::
-icon.svg::CompressedTexture2D::7229714541166325471::1729653268::1729788764::1::::<><>::
-matrix.gd::GDScript::-1::1729788729::0::1::::Matrix<>RefCounted<>::
-spline.tscn::PackedScene::7185058414645640728::1729653268::0::1::::<><>::
-spline_path.gd::GDScript::-1::1729788729::0::1::::<>Path3D<>::
+::res://::1729804092
+cameraControls.gd::GDScript::-1::1729700991::0::1::::<>Camera3D<>::
+greyscale image.tscn::PackedScene::5370824070592119277::1729802855::0::1::::<><>::res://greyscale_image.gd<>res://cameraControls.gd<>res://spline_path.gd
+greyscale_image.gd::GDScript::-1::1729717166::0::1::::<>Node3D<>::
+icon.svg::CompressedTexture2D::7229714541166325471::1727988403::1729802737::1::::<><>::
+matrix.gd::GDScript::-1::1729710710::0::1::::Matrix<>RefCounted<>::
+spline.tscn::PackedScene::7185058414645640728::1728675423::0::1::::<><>::
+spline_path.gd::GDScript::-1::1729802824::0::1::::<>Path3D<>::

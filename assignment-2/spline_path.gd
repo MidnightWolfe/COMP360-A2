@@ -1,5 +1,5 @@
 extends Path3D
-##Note: Matrix class is from our lectures / labs and is only slightly changed
+##NOTE: Matrix class is from our lectures / labs and is only slightly changed
 
 ###Global variables
 var pointsCurve = _hilbertPoints(3, 200) #The points of the Hilbert Curve
@@ -10,9 +10,7 @@ var resolution = 100 #The resoltion of the spline
 var splineScale = 0.5 #Scale of the spline, 0.5 makes this a catmull-rom, which is based on cardinal splines
 
 ##Static variables for spline image generation
-var imageWidth = 200 #Width of the 2D image of the spline
-var imageHeight = 200 #Height of the 2D image of the spline
-var splineImage = Image.create(imageWidth, imageHeight, false, Image.FORMAT_RGBA8) #Used to create the image of the spline
+var splineImage = Image.create(200, 200, false, Image.FORMAT_RGBA8) #Used to create the image of the spline
 
 ##Positioning variables for the image as well as the path, but SINCE the the path and the image have different origins you;ll have to also tune the path3D in create3Dpathinworld func
 var pathXOffset = 15	
@@ -208,7 +206,7 @@ func bresenhamLine(funcX0, funcY0, funcX1, funcY1):
 			error += differenceX
 			y1 += slopeY
 			
-#This takes the image made by catMullRom and turns it into a Sprite 3D then positions it so it will be visible in the world
+##This takes the image made by catMullRom and turns it into a Sprite 3D then positions it so it will be visible in the world
 func createImageInWorld(image: Sprite2D):
 	
 	
@@ -247,7 +245,7 @@ func createImageInWorld(image: Sprite2D):
 	pass
 	
 	
-#Create a path3D from the points used to generate the image, these points are taken directly from the pts[]. I found this easier than tracing it as my image only exists in runtime
+##Create a path3D from the points used to generate the image, these points are taken directly from the pts[]. I found this easier than tracing it as my image only exists in runtime
 func createPath3DInWorld():
 	#The points are way too spread apart for the size of our landscape this will shrink it down and make the path3D be scalable
 	var shrinkFactorX = 8.2
@@ -277,7 +275,7 @@ func createPath3DInWorld():
 	pass
 	
 	
-	#Shows the location of the actual curve 3D which is normally transparent
+	##Shows the location of the actual curve 3D which is normally transparent
 func debugShowPath(splineCurve: Curve3D):
 	#for each point in curve
 	for i in range(splineCurve.get_point_count()):
