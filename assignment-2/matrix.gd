@@ -1,14 +1,10 @@
 # generated with Gemini free version
 # 2024 Jul 13
 # minimal bugs generated, and only the type declaration of `data` member had error
-# figured out how to create an instance of the matrix.gd script: see draw.gd
 
-#Change this later to fit our needs
+#From the lecture
 
 class_name Matrix
-
-extends Node
-
 
 var rows : int
 var cols : int
