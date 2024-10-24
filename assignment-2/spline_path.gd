@@ -14,11 +14,11 @@ var imageWidth = 200 #Width of the 2D image of the spline
 var imageHeight = 200 #Height of the 2D image of the spline
 var splineImage = Image.create(imageWidth, imageHeight, false, Image.FORMAT_RGBA8) #Used to create the image of the spline
 
-##Positioning variables for path
-var pathXOffset = 15
+##Positioning variables for the image as well as the path, but SINCE the the path and the image have different origins you;ll have to also tune the path3D in create3Dpathinworld func
+var pathXOffset = 15	
 var pathYOffset = 1.8
 var pathZOffset = 10
-
+	
 ##The start and end points of the slice for the Hilbert Curve
 var start =  2 #start of the slice
 var end = 30 #End of the slice
@@ -35,7 +35,7 @@ func _ready() -> void:
 	#print(pointsCurve) #Testing
 	#print(points) #Testing
 	
-	##Calling to create the 3D image for the path
+	##Create the 3D path now that the spline is made
 	createPath3DInWorld()
 	pass
 
@@ -93,6 +93,8 @@ func catmullRom():
 	var splineSprite = Sprite2D.new()
 	splineSprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	splineSprite.texture = splineTexture
+	
+	#create an in world image of the spline
 	createImageInWorld(splineSprite)
 	
 	pass
@@ -206,11 +208,14 @@ func bresenhamLine(funcX0, funcY0, funcX1, funcY1):
 			error += differenceX
 			y1 += slopeY
 			
-			
+#This takes the image made by catMullRom and turns it into a Sprite 3D then positions it so it will be visible in the world
 func createImageInWorld(image: Sprite2D):
+	
+	
 	#Find pathimage and add image to it is the overarching goal here
 	#We could totally generate this on the fly instead of having a pre done node
 	var path_image_node = get_node("../PathImage")
+	
 	#~~~~~~~~ convert Sprite2D to 3D ~~~~~~~~ 
 	
 	#Grab the texture from the image passed to the function
@@ -221,47 +226,62 @@ func createImageInWorld(image: Sprite2D):
 		
 	#We make a new 3D sprite which we will paste the 2D sprit's texture onto
 	var new3DSprite = Sprite3D.new()
-	#Set up the 3D sprite
+	#Set up the 3D sprite with the new texture
 	new3DSprite.texture = textureFromSprite2D
 
 	
-	#Rotate thanks to the info from today's class to make that easy
+	#Rotate the image. Thanks to the info from today's class to make that easy
 	var th = PI/2
 	new3DSprite.transform.basis = Basis.IDENTITY.rotated(Vector3(-1, 0, 0), th)
 
 	#Add the 3D sprite to the Scene
 	path_image_node.add_child(new3DSprite)
-	#Set the 3DSprite's default position
-	new3DSprite.transform.origin = Vector3(pathXOffset,pathYOffset,pathZOffset)
-	#Scale if wanted
 	
+	#Set the 3DSprite's default position based on the offsets (Global)
+	new3DSprite.transform.origin = Vector3(pathXOffset,pathYOffset,pathZOffset)
+	
+	#Scale if wanted
 	new3DSprite.scale = Vector3(12.0,8.0,1)
 	
 	
 	pass
 	
 	
-#Create a path3D from the points used to generate the image. I found this easier than tracing it as my image only exists in runtime
+#Create a path3D from the points used to generate the image, these points are taken directly from the pts[]. I found this easier than tracing it as my image only exists in runtime
 func createPath3DInWorld():
-	#The points are way too spread apart for the size of our landscape this will shrink it down
-	var shrinkFactor = 20
+	#The points are way too spread apart for the size of our landscape this will shrink it down and make the path3D be scalable
+	var shrinkFactorX = 8.2
+	var shrinkFactorZ = 12.4
+	
+	#Positioning variables for the actual path3D
+	var path3DXOffset = 2.9
+	var path3DZOffset = 2
+	
 	#The points of the curve are already global under pts[] so lets use that
-	#First find the path3D in scene which if this script is set up as part of a path3D we are by default
+	#First find the path3D in scene which if this script is set up as part of a path3D we are by default which means we don't need a refrence to it
+	
 	for point in splinePoints:
-		#Convert vector2 to vector 3
-		var pointX = point.x/shrinkFactor + pathXOffset/1.71
+		#Convert vector2 to vector 3 while also adjusting the positioning of the points to fit the image we generated
+		#NOTE This is a manual step, you must adjust the values that the offsets are to move the path3D moving the image has no interaction with the path
+		var pointX = point.x/shrinkFactorX + path3DXOffset
 		@warning_ignore("integer_division")
-		var pointY = point.y/shrinkFactor + pathZOffset/2
+		#Y becomes Z due to rotation of the plane
+		var pointY = point.y/shrinkFactorZ + path3DZOffset
 		var pointIn3DSpace = Vector3(pointX, pathYOffset, pointY)
+		#Add the now modified point to the curve
 		self.curve.add_point(pointIn3DSpace)
 	#Show the path with objects for testing purposes
-	#debugShowPath(self.curve)
+	debugShowPath(self.curve)
 	
 	
 	pass
 	
+	
+	#Shows the location of the actual curve 3D which is normally transparent
 func debugShowPath(splineCurve: Curve3D):
+	#for each point in curve
 	for i in range(splineCurve.get_point_count()):
+		#Get the position of the point
 		var positionOfPoint = splineCurve.get_point_position(i)
 		#create a small cube at that point
 		var testObj = MeshInstance3D.new()
@@ -269,5 +289,6 @@ func debugShowPath(splineCurve: Curve3D):
 		testObjMesh.size = Vector3(0.05,0.05,0.05)
 		testObj.mesh = testObjMesh
 		testObj.transform.origin = positionOfPoint
+		#Add the cube
 		add_child(testObj)
 	pass
