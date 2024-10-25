@@ -6,6 +6,6 @@ Markus: Created space-filling Hilbert curve function. Helped make a random selec
 
 Ryan: Created 3D image based off of 2D image of the spline that shows above the landscape. Created 3D path following the spline. Made a debug path. Added comments to the code for clarity.
 
-Jannine:
+Jannine: Created Path3D code to have plane object follow path and edited the overall code to be easier to read
 
 Liam:
