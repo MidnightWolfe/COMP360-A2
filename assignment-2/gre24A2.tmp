@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cirwxnbsl2kuv"]
+[gd_scene load_steps=9 format=3 uid="uid://cirwxnbsl2kuv"]
 
 [ext_resource type="Script" path="res://greyscale_image.gd" id="1_4t6h6"]
 [ext_resource type="Script" path="res://spline_path.gd" id="2_gai1s"]
 [ext_resource type="Script" path="res://path_follow_3d.gd" id="4_jxoea"]
-[ext_resource type="Script" path="res://glider.gd" id="5_5k6j3"]
 [ext_resource type="PackedScene" uid="uid://uodyc5fgo6ls" path="res://glider.glb" id="5_ptvyv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i4bgi"]
@@ -34,7 +33,6 @@ script = ExtResource("1_4t6h6")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 16.3824, -0.00680649)
 
 [node name="Path3D" type="Path3D" parent="."]
-unique_name_in_owner = true
 curve = SubResource("Curve3D_04h4r")
 script = ExtResource("2_gai1s")
 
@@ -43,7 +41,6 @@ script = ExtResource("4_jxoea")
 
 [node name="glider2" parent="Path3D/PathFollow3D" instance=ExtResource("5_ptvyv")]
 transform = Transform3D(-0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, 0, 0, 0)
-script = ExtResource("5_5k6j3")
 
 [node name="Camera3D" type="Camera3D" parent="Path3D/PathFollow3D/glider2"]
 transform = Transform3D(-10, 1.59315e-07, -8.59589e-07, 0, 9.83255, 1.82236, 8.74228e-07, 1.82236, -9.83255, 0, 5, -10)
