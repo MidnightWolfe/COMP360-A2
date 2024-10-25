@@ -1,4 +1,5 @@
 res://greyscale image.tscn
-res://spline_path.gd
 res://glider.gd
+res://path_follow_3d_2.gd
 res://path_follow_3d.gd
+res://path_follow_3d_3.gd

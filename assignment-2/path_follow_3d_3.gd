@@ -1,5 +1,5 @@
 extends PathFollow3D
-
+var first =0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,5 +8,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if first == 0:
+		first = 1
+		progress = .1
 	progress += delta*1
 	pass
