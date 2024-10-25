@@ -8,12 +8,8 @@ var thisNode3D
 var slopeFar
 var slopeClose
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+## Function to get the slope for the plane position
+func _process(_delta: float) -> void:
 	#grabs the position of the plane and two extra nodes to calculate the slope of the lines 
 	#one is close and the other one is farther away. the close one aproximates the direction of the plane
 	#where the far one aproximates the tragectory of the turn.

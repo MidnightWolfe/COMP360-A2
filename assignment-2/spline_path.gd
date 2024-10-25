@@ -241,7 +241,7 @@ func _CreatePath3DInWorld():
 		#Add the now modified point to the curve
 		self.curve.add_point(pointIn3DSpace)
 	#Show the path with objects for testing purposes
-	_DebugShowPath(self.curve)
+	#_DebugShowPath(self.curve)
 	pass
 
 ##Shows the location of the actual curve 3D which is normally transparent

@@ -61,6 +61,7 @@ unique_name_in_owner = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D2/aheadNode"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+visible = false
 mesh = SubResource("BoxMesh_qld3c")
 
 [node name="PathFollow3D3" type="PathFollow3D" parent="Path3D"]
