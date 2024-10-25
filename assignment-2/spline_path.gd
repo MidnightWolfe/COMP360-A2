@@ -13,7 +13,7 @@ var splineScale = 0.5 #Scale of the spline, 0.5 makes this a catmull-rom, which 
 var splineImage = Image.create(200, 200, false, Image.FORMAT_RGBA8) #Used to create the image of the spline
 
 ##Positioning variables for the image as well as the path, but SINCE the the path and the image have different origins you;ll have to also tune the path3D in create3Dpathinworld func
-var pathXOffset = 15	
+var pathXOffset = 15
 var pathYOffset = 1.8
 var pathZOffset = 10
 	
@@ -32,6 +32,7 @@ func _ready() -> void:
 	catmullRom()
 	#print(pointsCurve) #Testing
 	#print(points) #Testing
+	#print(splinePoints) #Testing
 	
 	##Create the 3D path now that the spline is made
 	createPath3DInWorld()
@@ -41,7 +42,7 @@ func _ready() -> void:
 func cardinalSpline(projectedPoints):
 	##Getting the points after they are altered by the characterisitcs of the cardinal spline
 	##and multiplying them by the projected points from the knots
-	for i in range(resolution+1):
+	for i in range(resolution):
 		var t = float(i) / resolution #The t value that is generated from the knots 
 		##A 1 by 4 matrix to represent the polynominal of t
 		var polynominalT = Matrix.new(1, 4)
@@ -245,7 +246,7 @@ func createImageInWorld(image: Sprite2D):
 	pass
 	
 	
-##Create a path3D from the points used to generate the image, these points are taken directly from the pts[]. I found this easier than tracing it as my image only exists in runtime
+##Create a path3D from the points used to generate the image, these points are taken directly from the splinePoints[]. I found this easier than tracing it as my image only exists in runtime
 func createPath3DInWorld():
 	#The points are way too spread apart for the size of our landscape this will shrink it down and make the path3D be scalable
 	var shrinkFactorX = 8.2
@@ -255,7 +256,7 @@ func createPath3DInWorld():
 	var path3DXOffset = 2.9
 	var path3DZOffset = 2
 	
-	#The points of the curve are already global under pts[] so lets use that
+	#The points of the curve are already global under splinePoints[] so lets use that
 	#First find the path3D in scene which if this script is set up as part of a path3D we are by default which means we don't need a refrence to it
 	
 	for point in splinePoints:
