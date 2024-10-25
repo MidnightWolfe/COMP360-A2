@@ -4,16 +4,12 @@ var first = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
-
-	pass # Replace with function body.
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if first == 0:
 		first = 1
-		progress = .5
-	progress += delta*1
-	
+		progress = 0.5
+	progress += delta
 	pass
