@@ -1,14 +1,14 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1729904850
-cameraControls.gd::GDScript::-1::1729897841::0::1::::<>Camera3D<>::
-glider.gd::GDScript::-1::1729904487::0::1::::<>Node3D<>::
-glider.glb::PackedScene::1432903322976115828::1729897841::1729897897::1::::<><>::
-greyscale image.tscn::PackedScene::5370824070592119277::1729904487::0::1::::<><>::res://greyscale_image.gd<>res://spline_path.gd<>res://path_follow_3d.gd<>res://glider.gd<>uid://uodyc5fgo6ls::::res://glider.glb<>res://path_follow_3d_2.gd<>res://path_follow_3d_3.gd
-greyscale_image.gd::GDScript::-1::1729897841::0::1::::<>Node3D<>::
-icon.svg::CompressedTexture2D::7229714541166325471::1729897841::1729897897::1::::<><>::
-matrix.gd::GDScript::-1::1729897841::0::1::::Matrix<>RefCounted<>::
-path_follow_3d.gd::GDScript::-1::1729897841::0::1::::<>PathFollow3D<>::
-path_follow_3d_2.gd::GDScript::-1::1729900375::0::1::::<>PathFollow3D<>::
-path_follow_3d_3.gd::GDScript::-1::1729897841::0::1::::<>PathFollow3D<>::
-spline.tscn::PackedScene::7185058414645640728::1729897841::0::1::::<><>::
-spline_path.gd::GDScript::-1::1729904829::0::1::::<>Path3D<>::
+::res://::1729909967
+cameraControls.gd::GDScript::-1::1729877753::0::1::::<>Camera3D<>::
+glider.gd::GDScript::-1::1729906969::0::1::::<>Node3D<>::
+glider.glb::PackedScene::1432903322976115828::1729895443::1729909968::1::::<><>::
+greyscale image.tscn::PackedScene::5370824070592119277::1729906969::0::1::::<><>::res://greyscale_image.gd<>res://spline_path.gd<>res://path_follow_3d.gd<>res://glider.gd<>uid://uodyc5fgo6ls::::res://glider.glb<>res://path_follow_3d_2.gd<>res://path_follow_3d_3.gd
+greyscale_image.gd::GDScript::-1::1729877753::0::1::::<>Node3D<>::
+icon.svg::CompressedTexture2D::7229714541166325471::1727988403::1729909968::1::::<><>::
+matrix.gd::GDScript::-1::1729877753::0::1::::Matrix<>RefCounted<>::
+path_follow_3d.gd::GDScript::-1::1729895443::0::1::::<>PathFollow3D<>::
+path_follow_3d_2.gd::GDScript::-1::1729906969::0::1::::<>PathFollow3D<>::
+path_follow_3d_3.gd::GDScript::-1::1729895443::0::1::::<>PathFollow3D<>::
+spline.tscn::PackedScene::7185058414645640728::1729877753::0::1::::<><>::
+spline_path.gd::GDScript::-1::1729906969::0::1::::<>Path3D<>::
