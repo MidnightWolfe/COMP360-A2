@@ -7,6 +7,6 @@ var first = 0
 func _process(delta: float) -> void:
 	if first == 0:
 		first = 1
-		progress = 0.5
+		progress = 1.0
 	progress += delta
 	pass

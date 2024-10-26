@@ -92,6 +92,8 @@ func _CatmullRom():
 	pass
 
 ##Function to get the points from a Hilbert space-filling curve
+##I used https://youtu.be/dSK-MW-zuAc?si=fdw4R3YPUgjy6iW_ as an excellent
+##resource for finding the idea of bit shifting and bit masking.
 func _HilbertPoints(level : int, size : int) -> PackedVector2Array:
 	## Number of times the space is being divided
 	var divisions = pow(2, level)
