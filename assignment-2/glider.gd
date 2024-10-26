@@ -1,37 +1,43 @@
 extends Node3D
 
-var roll = 0.01
-var hold = 0
+var roll = 0.0005
 var aheadNode3D
 var closeNode3D
 var thisNode3D
-var slopeFar
-var slopeClose
+var crossProduct
+var a
+var b
 
 ## Function to get the slope for the plane position
 func _process(_delta: float) -> void:
-	#grabs the position of the plane and two extra nodes to calculate the slope of the lines 
-	#one is close and the other one is farther away. the close one aproximates the direction of the plane
-	#where the far one aproximates the tragectory of the turn.
+
+	# Get position of glider, position ahead of glider on path,
+	# and a position slightly in front of the glider
 	thisNode3D = get_global_position()
 	aheadNode3D = %aheadNode.get_global_position()
 	closeNode3D = %PathFollow3D3.get_global_position()
-	#calculates the slope of the two lines coming out of the plane. adds a small amount to keep is mostly above 1
-	slopeFar = ((aheadNode3D.z - thisNode3D.z)/(aheadNode3D.x - thisNode3D.x))+0.8 
-	slopeClose = ((closeNode3D.z - thisNode3D.z)/(closeNode3D.x - thisNode3D.x))+0.8
-	hold +=1
-	#every 8 points it calculates if the farther slope is greater less than or equal too zero and rotates the plan acordingly
-	if hold == 8:
-		if int(slopeFar) > int(slopeClose):
-			rotation.z += roll
-		if int(slopeFar) < int(slopeClose):
-			rotation.z -= roll
-		if int(slopeFar) == int(slopeClose):
-			if rotation.z < 0:
-				rotation.z +=roll
-			if rotation.z > 0:
-				rotation.z -=roll
-		hold=0
-		#print("slope Far: "+str(int(slopeFar)))
-		#print("slope Close: "+str(int(slopeClose)))
+	
+	# Vector a is a small vector pointing forward from the glider
+	# Vector b is a vector from the glider to the ahead point
+	a = closeNode3D - thisNode3D
+	b = aheadNode3D - thisNode3D
+	
+	# When b is to the left of a, b cross a will be negative y direction
+	# and when b is to the right of a, b cross a will be positive y direction
+	# as the angle between them increases, the magnitide of b cross a increases
+	crossProduct = b.cross(a)
+	
+	# Add a scaled b cross a to the z rotation
+	# the (1 - abs(rotation.z)) term prevents the rotation from getting to large
+	rotation.z += crossProduct.y*0.05*(1 - abs(rotation.z))
+	
+	# This corrects the gliders roll towards 0 at all times,
+	# but the above process outweighs this correction when the turns are sharper
+	# In this case the (1 - abs(rotation.z)) term increases the correction
+	# when the glider is greatly rolled
+	if rotation.z < 0:
+		rotation.z +=roll/(1- abs(rotation.z))
+	if rotation.z > 0:
+		rotation.z -=roll/(1- abs(rotation.z))
+	
 	pass
